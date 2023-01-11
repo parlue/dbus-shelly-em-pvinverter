@@ -132,7 +132,7 @@ class DbusShellyEmService:
  
   def _update(self):   
     try:
-       #get data from Shelly em
+       #get data from Shelly 1pm
        meter_data = self._getShellyData()
        
        config = self._getConfig()
@@ -155,8 +155,8 @@ class DbusShellyEmService:
            self._dbusservice[pre + '/Voltage'] = voltage
            self._dbusservice[pre + '/Current'] = current
            self._dbusservice[pre + '/Power'] = power
-           #if power > 0:
-           self._dbusservice[pre + '/Energy/Forward'] = total/1000
+           if power > 0:
+             self._dbusservice[pre + '/Energy/Forward'] = total/1000
            
          else:
            self._dbusservice[pre + '/Voltage'] = 0
