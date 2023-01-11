@@ -145,7 +145,7 @@ class DbusShellyEmService:
          pre = '/Ac/' + phase
          
          if phase == pvinverter_phase:
-           power = abs(meter_data['emeters'][0]['power']
+           power = abs(meter_data['emeters'][0]['power'])
            total = meter_data['emeters'][0]['total']
            if total <= 0:
              total = meter_data['emeters'][0]['total_returned']
