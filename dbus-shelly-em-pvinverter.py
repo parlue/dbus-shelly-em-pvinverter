@@ -61,7 +61,7 @@ class DbusShellyEmService:
     self._lastUpdate = 0
 
     # add _update function 'timer'
-    gobject.timeout_add(250, self._update) # pause 250ms before the next request
+    gobject.timeout_add(500, self._update) # pause 500ms before the next request
     
     # add _signOfLife 'timer' to get feedback in log every 5minutes
     gobject.timeout_add(self._getSignOfLifeInterval()*60*1000, self._signOfLife)
@@ -155,8 +155,8 @@ class DbusShellyEmService:
            self._dbusservice[pre + '/Voltage'] = voltage
            self._dbusservice[pre + '/Current'] = current
            self._dbusservice[pre + '/Power'] = power
-           if power > 0:
-             self._dbusservice[pre + '/Energy/Forward'] = total/1000/60 
+           #if power > 0:
+           self._dbusservice[pre + '/Energy/Forward'] = total/1000
            
          else:
            self._dbusservice[pre + '/Voltage'] = 0
@@ -166,6 +166,8 @@ class DbusShellyEmService:
            
        self._dbusservice['/Ac/Power'] = self._dbusservice['/Ac/' + pvinverter_phase + '/Power']
        self._dbusservice['/Ac/Energy/Forward'] = self._dbusservice['/Ac/' + pvinverter_phase + '/Energy/Forward']
+       #Calc = 60min * 60 sec / 0.500 (refresh interval of 500ms) * 1000
+       self._dbusservice['/Ac/Energy/Forward'] = self._dbusservice['/Ac/Energy/Forward'] + (self._dbusservice['/Ac/Power']/(60*60/0.5*1000))
        
        #logging
        logging.debug("House Consumption (/Ac/Power): %s" % (self._dbusservice['/Ac/Power']))
