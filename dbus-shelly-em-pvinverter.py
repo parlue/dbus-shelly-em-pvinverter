@@ -20,8 +20,8 @@ sys.path.insert(1, os.path.join(os.path.dirname(__file__), '/opt/victronenergy/d
 from vedbus import VeDbusService
 
 
-class DbusShelly1pmService:
-  def __init__(self, servicename, paths, productname='Shelly 1PM', connection='Shelly 1PM HTTP JSON service'):
+class DbusShellyEmService:
+  def __init__(self, servicename, paths, productname='Shelly EM', connection='Shelly EM HTTP JSON service'):
     config = self._getConfig()
     deviceinstance = int(config['DEFAULT']['Deviceinstance'])
     customname = config['DEFAULT']['CustomName']
@@ -111,7 +111,7 @@ class DbusShelly1pmService:
     
     # check for response
     if not meter_r:
-        raise ConnectionError("No response from Shelly 1PM - %s" % (URL))
+        raise ConnectionError("No response from Shelly EM - %s" % (URL))
     
     meter_data = meter_r.json()     
     
@@ -132,7 +132,7 @@ class DbusShelly1pmService:
  
   def _update(self):   
     try:
-       #get data from Shelly 1pm
+       #get data from Shelly em
        meter_data = self._getShellyData()
        
        config = self._getConfig()
@@ -145,8 +145,10 @@ class DbusShelly1pmService:
          pre = '/Ac/' + phase
          
          if phase == pvinverter_phase:
-           power = meter_data['meters'][0]['power']
-           total = meter_data['meters'][0]['total']
+           power = abs(meter_data['emeters'][0]['power']
+           total = meter_data['emeters'][0]['total']
+           if total <= 0:
+             total = meter_data['emeters'][0]['total_returned']
            voltage = 230
            current = power / voltage
            
@@ -214,7 +216,7 @@ def main():
       _v = lambda p, v: (str(round(v, 1)) + 'V')   
      
       #start our main-service
-      pvac_output = DbusShelly1pmService(
+      pvac_output = DbusShellyEmService(
         servicename='com.victronenergy.pvinverter',
         paths={
           '/Ac/Energy/Forward': {'initial': None, 'textformat': _kwh}, # energy produced by pv inverter
