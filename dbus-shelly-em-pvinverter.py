@@ -42,12 +42,12 @@ class DbusShellyEmService:
     self._dbusservice.add_path('/ProductId', 0xFFFF) # id assigned by Victron Support from SDM630v2.py
     self._dbusservice.add_path('/ProductName', productname)
     self._dbusservice.add_path('/CustomName', customname)    
-    self._dbusservice.add_path('/Connected', 1)
-    
+    self._dbusservice.add_path('/Connected', 1)   
     self._dbusservice.add_path('/Latency', None)    
     self._dbusservice.add_path('/FirmwareVersion', 0.1)
     self._dbusservice.add_path('/HardwareVersion', 0)
-    self._dbusservice.add_path('/Position', 0) # normaly only needed for pvinverter
+    self._dbusservice.add_path('/Position', 1) # normaly only needed for pvinverter
+    self._dbusservice.add_path('/Role', 'pvinverter')
     self._dbusservice.add_path('/Serial', self._getShellySerial())
     self._dbusservice.add_path('/UpdateIndex', 0)
     self._dbusservice.add_path('/StatusCode', 0)  # Dummy path so VRM detects us as a PV-inverter.
