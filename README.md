@@ -54,7 +54,7 @@ After that call the install.sh script.
 
 The following script should do everything for you:
 ```
-wget https://github.com/eddy0815/dbus-shelly-em-pvinverter/archive/refs/heads/main.zip
+wget https://github.com/Eddy0815/dbus-shelly-em-pvinverter/archive/refs/tags/preRelease.zip
 unzip main.zip "dbus-shelly-em-pvinverter-main/*" -d /data
 mv /data/dbus-shelly-em-pvinverter-main /data/dbus-shelly-em-pvinverter
 chmod a+x /data/dbus-shelly-em-pvinverter/install.sh
