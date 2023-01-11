@@ -46,7 +46,7 @@ class DbusShellyEmService:
     self._dbusservice.add_path('/Latency', None)    
     self._dbusservice.add_path('/FirmwareVersion', 0.1)
     self._dbusservice.add_path('/HardwareVersion', 0)
-    self._dbusservice.add_path('/Position', 1) # normaly only needed for pvinverter (0=AC input 1 ; 1=AC output ; 2=AC input 2)
+    self._dbusservice.add_path('/Position', 0) # normaly only needed for pvinverter (0=AC input 1 ; 1=AC output ; 2=AC input 2)
     self._dbusservice.add_path('/Role', 'pvinverter')
     self._dbusservice.add_path('/Serial', self._getShellySerial())
     self._dbusservice.add_path('/UpdateIndex', 0)
