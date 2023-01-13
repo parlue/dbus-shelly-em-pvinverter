@@ -33,10 +33,10 @@ So what is the script doing:
 - Running as a service
 - connecting to DBus of the Venus OS `com.victronenergy.pvinverter.http_{DeviceInstanceID_from_config}`
 - After successful DBus connection Shelly EM is accessed via REST-API - simply the /status is called and a JSON is returned with all details
-  A sample JSON file from Shelly 1PM can be found [here](docs/shelly1pm-status-sample.json)
+  A sample JSON file from Shelly EM can be found [here](docs/shellyem-status-sample.json)
 - Serial/MAC is taken from the response as device serial
 - Paths are added to the DBus with default value 0 - including some settings like name, etc
-- After that a "loop" is started which pulls Shelly EM data every 750ms from the REST-API and updates the values in the DBus
+- After that a "loop" is started which pulls Shelly EM data every 500ms from the REST-API and updates the values in the DBus
 
 Thats it 😄
 
@@ -54,7 +54,7 @@ After that call the install.sh script.
 
 The following script should do everything for you:
 ```
-wget https://github.com/Eddy0815/dbus-shelly-em-pvinverter/archive/refs/tags/preRelease.zip
+wget https://github.com/Eddy0815/dbus-shelly-em-pvinverter/archive/refs/tags/main.zip
 unzip main.zip "dbus-shelly-em-pvinverter-main/*" -d /data
 mv /data/dbus-shelly-em-pvinverter-main /data/dbus-shelly-em-pvinverter
 chmod a+x /data/dbus-shelly-em-pvinverter/install.sh
