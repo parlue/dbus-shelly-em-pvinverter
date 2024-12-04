@@ -54,11 +54,10 @@ After that call the install.sh script.
 
 The following script should do everything for you:
 ```
-wget https://github.com/Eddy0815/dbus-shelly-em-pvinverter/archive/refs/tags/main.zip
+wget https://github.com/parlue/dbus-shelly-em-pvinverter/archive/refs/tags/main.zip
 unzip main.zip "dbus-shelly-em-pvinverter-main/*" -d /data
 mv /data/dbus-shelly-em-pvinverter-main /data/dbus-shelly-em-pvinverter
 chmod a+x /data/dbus-shelly-em-pvinverter/install.sh
-/data/dbus-shelly-em-pvinverter/install.sh
 rm main.zip
 ```
 ⚠️ Check configuration after that - because service is already installed an running and with wrong connection data (host, username, pwd) you will spam the log-file
